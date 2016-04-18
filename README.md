@@ -11,3 +11,7 @@ Fitter filters tweets by geolocation, keyword (both in the body and hash tags) a
 
 ## Project Tracking
 [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/1572541)
+
+## Images
+#### Pseudo-coding the project structure
+![pseudocode](./pseudocoding.JPG)
