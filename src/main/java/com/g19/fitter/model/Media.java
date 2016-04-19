@@ -4,4 +4,37 @@ package com.g19.fitter.model;
  * Created by davidsudia on 4/18/16.
  */
 public class Media {
+    private String type;
+    private String mediaUrlHttps;
+    private String url;
+
+    public Media(String type, String mediaUrlHttps, String url) {
+        this.type = type;
+        this.mediaUrlHttps = mediaUrlHttps;
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getMediaUrlHttps() {
+        return mediaUrlHttps;
+    }
+
+    public void setMediaUrlHttps(String mediaUrlHttps) {
+        this.mediaUrlHttps = mediaUrlHttps;
+    }
 }
