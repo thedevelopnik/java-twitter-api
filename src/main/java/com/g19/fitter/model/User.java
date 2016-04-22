@@ -9,15 +9,13 @@ public class User {
 
     @Id
     private String id;
-    private String username;
     private String email;
     private String twitterToken;
     private String appName;
     private String apiKey;
 
-    public User(String id, String username, String email, String twitterToken, String appName, String apiKey) {
+    public User(String id, String email, String twitterToken, String appName, String apiKey) {
         this.id = id;
-        this.username = username;
         this.email = email;
         this.twitterToken = twitterToken;
         this.appName = appName;
@@ -30,14 +28,6 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {

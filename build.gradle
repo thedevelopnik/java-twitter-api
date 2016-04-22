@@ -28,4 +28,6 @@ dependencyManagement {
 dependencies {
     compile 'org.springframework:spring-core'
     compile 'org.springframework.data:spring-data-mongodb'
+    compile 'org.springframework.social:spring-social-twitter'
+    compile 'org.springframework.session:spring-session'
 }
