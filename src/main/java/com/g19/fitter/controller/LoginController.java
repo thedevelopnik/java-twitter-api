@@ -2,6 +2,7 @@ package com.g19.fitter.controller;
 
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.twitter.api.Twitter;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import javax.inject.Inject;
  * Created by davidsudia on 4/15/16.
  */
 @Controller
+@Component
 public class LoginController {
 
     private Twitter twitter;
