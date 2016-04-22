@@ -24,3 +24,8 @@ dependencyManagement {
         mavenBom 'io.spring.platform:platform-bom:2.0.3.RELEASE'
     }
 }
+
+dependencies {
+    compile 'org.springframework:spring-core'
+    compile 'org.springframework.data:spring-data-mongodb'
+}
