@@ -1,5 +1,7 @@
 # Fitter - Twitter Filtering API in Java
-Created by [David Sudia](https://github.com/dsudia) and [Ben Hernandez](https://github.com/benaychh)
+Created by [David Sudia](https://github.com/dsudia), [Ben Hernandez](https://github.com/benaychh) and [Kyle Maxwell](https://github.com/KyleJayMaxwell).
+
+For an example of a product using this API, look at [this demo client](https://github.com/BenAychh/react-twitter-client).
 
 ## Uses and Users
 Fitter is a standalone API. It can be used to filter tweets in a variety of ways and send those filtered tweets on to a front-end client. Its users are people who want to build a client that can present these filtered tweets to end-users.
