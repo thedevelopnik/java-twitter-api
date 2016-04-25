@@ -30,4 +30,6 @@ dependencies {
     compile 'org.springframework.data:spring-data-mongodb'
     compile 'org.springframework.social:spring-social-twitter'
     compile 'org.springframework.session:spring-session'
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile('org.springframework.boot:spring-boot-devtools')
 }
