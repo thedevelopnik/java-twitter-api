@@ -51,7 +51,7 @@ public class TweetsService implements StreamListener {
     }
 
     public void onDelete(StreamDeleteEvent deleteEvent) {
-        System.out.println("I have just the thing for you! BALEETED!");
+
     }
 
     public void onLimit(int numberOfLimitedTweets) {
