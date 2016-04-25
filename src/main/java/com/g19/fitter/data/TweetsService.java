@@ -47,7 +47,6 @@ public class TweetsService implements StreamListener {
     }
 
     public void onTweet(Tweet tweet) {
-        System.out.println("There was a tweet!");
         queue.offer(tweet);
     }
 

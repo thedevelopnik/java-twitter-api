@@ -18,7 +18,6 @@ public class TweetFilter implements Runnable {
         while (true) {
             try {
                 Tweet tweet = queue.take();
-                System.out.println(tweet);
                 filterTweet(tweet);
             } catch (InterruptedException e) {
                 e.printStackTrace();
