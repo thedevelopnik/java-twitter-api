@@ -2,6 +2,7 @@ package com.g19.fitter.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.core.MessageSendingOperations;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.social.twitter.api.*;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.stereotype.Service;
@@ -13,14 +14,14 @@ import java.util.*;
  * Created by davidsudia on 4/18/16.
  */
 @Service
-public class TweetsService {
+class TweetsService {
 
     @Inject
     private Twitter twitter;
 
     private final MessageSendingOperations messagingTemplate;
 
-    String localLang = "en";
+    private String localLang = "en";
 
     @Autowired
     public TweetsService(
@@ -28,7 +29,9 @@ public class TweetsService {
         this.messagingTemplate = messagingTemplate;
     }
 
-    public void streamApi() throws InterruptedException {
+    @SuppressWarnings("unchecked")
+    @MessageMapping("/tweetParams")
+    void streamApi() throws InterruptedException {
 
         List<StreamListener> listeners = new ArrayList<StreamListener>();
         StreamListener streamListener = new StreamListener() {
@@ -36,9 +39,8 @@ public class TweetsService {
                 String destination = "/tweets";
                 String languageCode = tweet.getLanguageCode();
                 if (languageCode.equals(localLang)) {
-                    messagingTemplate.convertAndSend(destination, tweet.getText());
+                    messagingTemplate.convertAndSend(destination, tweet);
                 }
-
             }
 
             public void onDelete(StreamDeleteEvent deleteEvent) {
