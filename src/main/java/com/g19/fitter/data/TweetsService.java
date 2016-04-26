@@ -31,7 +31,7 @@ class TweetsService {
 
 
     @SuppressWarnings("unchecked")
-    void streamApi() throws InterruptedException {
+    void streamApi(final String apiKey, final List<String> keywords) throws InterruptedException {
 
         List<StreamListener> listeners = new ArrayList<StreamListener>();
 
@@ -40,20 +40,25 @@ class TweetsService {
                 String destination = "/tweets";
                 String languageCode = tweet.getLanguageCode();
                 if (languageCode.equals(localLang)) {
+                    String id = tweet.getIdStr();
                     String text = tweet.getText();
                     String user = tweet.getFromUser();
                     String profileImg = tweet.getProfileImageUrl();
                     MinTweet minTweet;
-                    if (tweet.hasMedia()) {
-                        Entities entities = tweet.getEntities();
-                        List<MediaEntity> media = entities.getMedia();
-                        String mediaType = media.get(0).getType();
-                        String mediaUrl = media.get(0).getMediaSecureUrl();
-                        minTweet = new MinTweet(text, user, profileImg, mediaType, mediaUrl);
-                    } else {
-                        minTweet = new MinTweet(text, user, profileImg, null, null);
+                    if (!keywords.isEmpty()) {
+                        if (text.contains(keywords.get(0))) {
+                            if (tweet.hasMedia()) {
+                                Entities entities = tweet.getEntities();
+                                List<MediaEntity> media = entities.getMedia();
+                                String mediaType = media.get(0).getType();
+                                String mediaUrl = media.get(0).getMediaSecureUrl();
+                                minTweet = new MinTweet(id, text, user, profileImg, mediaType, mediaUrl);
+                            } else {
+                                minTweet = new MinTweet(id, text, user, profileImg, null, null);
+                            }
+                            messagingTemplate.convertAndSend(destination, minTweet);
+                        }
                     }
-                    messagingTemplate.convertAndSend(destination, minTweet);
                 }
             }
 

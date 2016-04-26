@@ -21,15 +21,11 @@ public class SocketStart {
 
     private TweetsService tweetsService;
 
-    private StompConnectEvent connectEvent;
-
     @Autowired
     public SocketStart(
-            TweetsService tweetsService,
-            StompConnectEvent connectEvent) throws InterruptedException {
+            TweetsService tweetsService
+    ) throws InterruptedException {
         this.tweetsService = tweetsService;
-        this.connectEvent = connectEvent;
-        tweetsService.streamApi();
     }
 
 

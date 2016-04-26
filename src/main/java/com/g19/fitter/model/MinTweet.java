@@ -4,18 +4,28 @@ package com.g19.fitter.model;
  * Created by davidsudia on 4/26/16.
  */
 public class MinTweet {
+    private String id;
     private String text;
     private String user;
     private String profileImageUrl;
     private String mediaType;
     private String mediaUrl;
 
-    public MinTweet(String text, String user, String profileImageUrl, String mediaType, String mediaUrl) {
+    public MinTweet(String id, String text, String user, String profileImageUrl, String mediaType, String mediaUrl) {
+        this.id = id;
         this.text = text;
         this.user = user;
         this.profileImageUrl = profileImageUrl;
         this.mediaType = mediaType;
         this.mediaUrl = mediaUrl;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMediaType() {

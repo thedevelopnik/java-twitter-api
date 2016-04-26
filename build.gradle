@@ -39,4 +39,5 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-websocket'
     compile 'org.springframework:spring-messaging'
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+    compile 'com.google.code.gson:gson:2.6.2'
 }
