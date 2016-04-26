@@ -71,4 +71,5 @@ class TweetsService {
 
         Stream stream = twitter.streamingOperations().sample(listeners);
     }
+
 }

@@ -10,11 +10,11 @@ import org.springframework.web.socket.WebSocketSession;
  */
 public class SocketHandler implements WebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-
+        System.out.println("Connection Established!");
     }
 
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
-
+        System.out.println(message);
     }
 
     public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
