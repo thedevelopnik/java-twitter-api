@@ -20,6 +20,8 @@ public class TweetsService {
 
     private final MessageSendingOperations messagingTemplate;
 
+    String localLang = "en";
+
     @Autowired
     public TweetsService(
             final MessageSendingOperations<String> messagingTemplate) {
@@ -32,7 +34,11 @@ public class TweetsService {
         StreamListener streamListener = new StreamListener() {
             public void onTweet(Tweet tweet) {
                 String destination = "/tweets";
-                messagingTemplate.convertAndSend(destination, tweet.getText());
+                String languageCode = tweet.getLanguageCode();
+                if (languageCode.equals(localLang)) {
+                    messagingTemplate.convertAndSend(destination, tweet.getText());
+                }
+
             }
 
             public void onDelete(StreamDeleteEvent deleteEvent) {
