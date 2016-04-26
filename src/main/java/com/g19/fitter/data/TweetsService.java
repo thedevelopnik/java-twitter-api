@@ -1,5 +1,6 @@
 package com.g19.fitter.data;
 
+import com.g19.fitter.model.MinTweet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.core.MessageSendingOperations;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -39,7 +40,20 @@ class TweetsService {
                 String destination = "/tweets";
                 String languageCode = tweet.getLanguageCode();
                 if (languageCode.equals(localLang)) {
-                    messagingTemplate.convertAndSend(destination, tweet);
+                    String text = tweet.getText();
+                    String user = tweet.getFromUser();
+                    String profileImg = tweet.getProfileImageUrl();
+                    MinTweet minTweet;
+                    if (tweet.hasMedia()) {
+                        Entities entities = tweet.getEntities();
+                        List<MediaEntity> media = entities.getMedia();
+                        String mediaType = media.get(0).getType();
+                        String mediaUrl = media.get(0).getMediaSecureUrl();
+                        minTweet = new MinTweet(text, user, profileImg, mediaType, mediaUrl);
+                    } else {
+                        minTweet = new MinTweet(text, user, profileImg, null, null);
+                    }
+                    messagingTemplate.convertAndSend(destination, minTweet);
                 }
             }
 
