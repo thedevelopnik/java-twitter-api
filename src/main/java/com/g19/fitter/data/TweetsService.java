@@ -3,7 +3,6 @@ package com.g19.fitter.data;
 import com.g19.fitter.model.MinTweet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.core.MessageSendingOperations;
-import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.social.twitter.api.*;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.stereotype.Service;
@@ -30,11 +29,12 @@ class TweetsService {
         this.messagingTemplate = messagingTemplate;
     }
 
+
     @SuppressWarnings("unchecked")
-    @MessageMapping("/tweetParams")
     void streamApi() throws InterruptedException {
 
         List<StreamListener> listeners = new ArrayList<StreamListener>();
+
         StreamListener streamListener = new StreamListener() {
             public void onTweet(Tweet tweet) {
                 String destination = "/tweets";

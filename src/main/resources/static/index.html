@@ -17,7 +17,9 @@
         function connect() {
             var socket = new SockJS('/tweet');
             stompClient = Stomp.over(socket);
-            stompClient.connect({}, function (frame) {
+            stompClient.connect({
+                apiKey: '71CC9BAA-3068-41DF-A17F-CF60DCDB3827'
+            }, function (frame) {
                 setConnected(true);
                 console.log('Connected: ' + frame);
                 stompClient.subscribe('/tweets', function (res) {
