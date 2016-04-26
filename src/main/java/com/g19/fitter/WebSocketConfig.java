@@ -1,6 +1,5 @@
 package com.g19.fitter;
 
-import com.g19.fitter.data.SocketHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.converter.MessageConverter;

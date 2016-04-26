@@ -1,4 +1,4 @@
-package com.g19.fitter.data;
+package com.g19.fitter;
 
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketHandler;
