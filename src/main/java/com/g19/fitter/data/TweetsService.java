@@ -3,7 +3,6 @@ package com.g19.fitter.data;
 import org.springframework.social.twitter.api.*;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 
 import javax.inject.Inject;
 import java.util.*;
@@ -19,7 +18,7 @@ public class TweetsService {
     @Inject
     private Twitter twitter;
 
-    public ModelMap streamApi(final ModelMap modelMap) throws InterruptedException {
+    public BlockingQueue<Tweet> streamApi() throws InterruptedException {
 
         final BlockingQueue<Tweet> tweets = new ArrayBlockingQueue<Tweet>(20);
 
@@ -27,7 +26,6 @@ public class TweetsService {
         StreamListener streamListener = new StreamListener() {
             public void onTweet(Tweet tweet) {
                 tweets.add(tweet);
-                modelMap.put("tweets", tweets);
             }
 
             public void onDelete(StreamDeleteEvent deleteEvent) {
@@ -44,6 +42,10 @@ public class TweetsService {
 
         Stream stream = twitter.streamingOperations().sample(listeners);
 
-        return modelMap;
+        if (tweets.isEmpty()) {
+            Thread.sleep(3000);
+        }
+        return tweets;
+
     }
 }
