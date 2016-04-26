@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.api.impl.TwitterTemplate;
 
-/**
+/*
  * Created by davidsudia on 4/25/16.
  */
 @Configuration

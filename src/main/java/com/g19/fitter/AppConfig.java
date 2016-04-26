@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.social.TwitterAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
-/**
+/*
  * Created by davidsudia on 4/15/16.
  */
 @EnableAutoConfiguration(exclude = {TwitterAutoConfiguration.class})

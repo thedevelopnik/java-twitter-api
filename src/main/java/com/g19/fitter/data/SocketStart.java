@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 
-/**
+/*
  * Created by davidsudia on 4/22/16.
  */
 @Component

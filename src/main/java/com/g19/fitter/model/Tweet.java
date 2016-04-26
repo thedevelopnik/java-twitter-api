@@ -3,7 +3,7 @@ package com.g19.fitter.model;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
+/*
  * Created by davidsudia on 4/15/16.
  */
 

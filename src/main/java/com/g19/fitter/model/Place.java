@@ -3,10 +3,10 @@ package com.g19.fitter.model;
 
 import java.util.ArrayList;
 
-/**
+/*
  * Created by davidsudia on 4/18/16.
  */
-public class Place {
+class Place {
     private String url;
     private String fullName;
     private String countryCode;

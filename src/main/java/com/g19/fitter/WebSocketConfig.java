@@ -13,7 +13,7 @@ import org.springframework.web.socket.config.annotation.WebSocketTransportRegist
 
 import java.util.List;
 
-/**
+/*
  * Created by davidsudia on 4/25/16.
  */
 @Configuration

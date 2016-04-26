@@ -2,7 +2,7 @@ package com.g19.fitter.model;
 
 import org.springframework.data.annotation.Id;
 
-/**
+/*
  * Created by davidsudia on 4/22/16.
  */
 public class User {
