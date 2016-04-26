@@ -15,14 +15,14 @@
         }
 
         function connect() {
-            var socket = new SockJS('/tweets');
+            var socket = new SockJS('/tweet');
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function (frame) {
                 setConnected(true);
                 console.log('Connected: ' + frame);
-                stompClient.subscribe('/topic/tweet', function (tweet) {
-                    console.log(tweet);
-                    showTweet(JSON.parse(tweet));
+                stompClient.subscribe('/tweets', function (res) {
+                    console.log(res.body);
+                    showTweet(res.body);
                 });
             });
         }

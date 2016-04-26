@@ -1,5 +1,7 @@
 package com.g19.fitter.data;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.core.MessageSendingOperations;
 import org.springframework.social.twitter.api.*;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.stereotype.Service;
@@ -18,14 +20,23 @@ public class TweetsService {
     @Inject
     private Twitter twitter;
 
-    public BlockingQueue<Tweet> streamApi() throws InterruptedException {
+    private final MessageSendingOperations messagingTemplate;
 
-        final BlockingQueue<Tweet> tweets = new ArrayBlockingQueue<Tweet>(20);
+    @Autowired
+    public TweetsService(
+            final MessageSendingOperations<String> messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
+    }
+
+    public void streamApi() throws InterruptedException {
 
         List<StreamListener> listeners = new ArrayList<StreamListener>();
         StreamListener streamListener = new StreamListener() {
             public void onTweet(Tweet tweet) {
-                tweets.add(tweet);
+                String destination = "/tweets";
+                if (tweet.getLanguageCode() == "en") {
+                    messagingTemplate.convertAndSend(destination, tweet.getExtraData());
+                }
             }
 
             public void onDelete(StreamDeleteEvent deleteEvent) {
@@ -41,11 +52,5 @@ public class TweetsService {
         listeners.add(streamListener);
 
         Stream stream = twitter.streamingOperations().sample(listeners);
-
-        if (tweets.isEmpty()) {
-            Thread.sleep(3000);
-        }
-        return tweets;
-
     }
 }
