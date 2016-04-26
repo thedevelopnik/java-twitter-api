@@ -3,3 +3,4 @@
 *.iws
 *.iml
 .idea/
+.gradle/2.9/taskArtifacts/
