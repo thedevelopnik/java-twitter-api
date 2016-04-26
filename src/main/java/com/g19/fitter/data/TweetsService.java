@@ -58,6 +58,17 @@ class TweetsService {
                             }
                             messagingTemplate.convertAndSend(destination, minTweet);
                         }
+                    } else {
+                        if (tweet.hasMedia()) {
+                            Entities entities = tweet.getEntities();
+                            List<MediaEntity> media = entities.getMedia();
+                            String mediaType = media.get(0).getType();
+                            String mediaUrl = media.get(0).getMediaSecureUrl();
+                            minTweet = new MinTweet(id, text, user, profileImg, mediaType, mediaUrl);
+                        } else {
+                            minTweet = new MinTweet(id, text, user, profileImg, null, null);
+                        }
+                        messagingTemplate.convertAndSend(destination, minTweet);
                     }
                 }
             }
