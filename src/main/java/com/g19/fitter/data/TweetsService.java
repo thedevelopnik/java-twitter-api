@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 
 /**
  * Created by davidsudia on 4/18/16.
@@ -34,9 +32,7 @@ public class TweetsService {
         StreamListener streamListener = new StreamListener() {
             public void onTweet(Tweet tweet) {
                 String destination = "/tweets";
-                if (tweet.getLanguageCode() == "en") {
-                    messagingTemplate.convertAndSend(destination, tweet.getExtraData());
-                }
+                messagingTemplate.convertAndSend(destination, tweet.getText());
             }
 
             public void onDelete(StreamDeleteEvent deleteEvent) {
