@@ -1,4 +1,4 @@
-package com.g19.fitter.data;
+package com.g19.fitter.database;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
