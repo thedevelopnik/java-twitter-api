@@ -25,8 +25,9 @@ class StompConnectEvent implements ApplicationListener<SessionConnectEvent> {
         String apiKeyStr = apiKey.get(0);
         List<String> keywords = headers.getNativeHeader("keywords");
         System.out.println(keywords);
+        tweetsService.setFilter(apiKeyStr, keywords);
         try {
-            tweetsService.streamApi(apiKeyStr, keywords);
+            tweetsService.streamApi();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
