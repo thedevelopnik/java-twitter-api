@@ -18,4 +18,9 @@ public class PortalController {
     public String getLogin() {
         return "login";
     }
+
+    @RequestMapping("/signup")
+    public String getSignup() {
+        return "signup";
+    }
 }
