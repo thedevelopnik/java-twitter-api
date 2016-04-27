@@ -31,6 +31,11 @@ dependencyManagement {
 
 dependencies {
     compile 'org.springframework:spring-core'
+    compile 'org.springframework.security:spring-security-core'
+    compile 'org.springframework.security:spring-security-web'
+    compile 'org.springframework.security:spring-security-data'
+    compile 'org.springframework.security:spring-security-crypto'
+    compile 'org.springframework.boot:spring-boot-starter-security'
     compile 'org.springframework.data:spring-data-mongodb'
     compile 'org.springframework.social:spring-social-twitter'
     compile 'org.springframework.session:spring-session'
