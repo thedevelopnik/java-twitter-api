@@ -54,6 +54,8 @@ class TweetsService {
                     String text = tweet.getText();
                     String user = tweet.getFromUser();
                     String profileImg = tweet.getProfileImageUrl();
+
+                    // 0 = VN, 1 = N, 2 = Neut, 3 = P, 4 = VP
                     int sentiment = NLP.findSentiment(text);
                     MinTweet minTweet;
                     if (tweet.hasMedia()) {
