@@ -81,3 +81,4 @@ public class LocalAuthenticationProvider extends AbstractUserDetailsAuthenticati
                 true, // account not locked
                 auths);
     }
+}

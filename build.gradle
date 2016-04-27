@@ -47,4 +47,5 @@ dependencies {
     compile 'org.springframework:spring-messaging'
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile fileTree(dir: 'lib', include: '*.jar')
+    compile 'org.apache.commons:commons-lang3:3.4'
 }
