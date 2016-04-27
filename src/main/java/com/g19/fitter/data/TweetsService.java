@@ -42,11 +42,13 @@ class TweetsService {
         List<StreamListener> listeners = new ArrayList<StreamListener>();
 
         StreamListener streamListener = new StreamListener() {
+            int count = 0;
             public void onTweet(Tweet tweet) {
+                count++;
                 String destination = "/tweets";
                 String languageCode = tweet.getLanguageCode();
                 if (languageCode.equals(localLang)) {
-                    String id = tweet.getIdStr();
+                    String id = String.valueOf(count);
                     String text = tweet.getText();
                     String user = tweet.getFromUser();
                     String profileImg = tweet.getProfileImageUrl();
