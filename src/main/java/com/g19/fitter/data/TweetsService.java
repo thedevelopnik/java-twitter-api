@@ -32,7 +32,7 @@ class TweetsService {
         filterer = new Filterer();
     }
 
-    public void setFilter(String apiKey, List<String> keyWords, Boolean semantic) {
+    public void setFilter(String apiKey, List<String> keyWords) {
         filterer.addOrReplaceFilter(apiKey, keyWords);
     }
 
