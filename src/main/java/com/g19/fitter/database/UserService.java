@@ -4,21 +4,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-/*
- * Created by davidsudia on 4/27/16.
- */
 @Service
 public class UserService {
 
     @Autowired
     private UserAccountRepository userRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
+    public Role getRole(String role) {
+        return roleRepository.findOne(role);
+    }
+
     public boolean create(UserAccount user) {
         Assert.isNull(user.getId());
 
-        if (userRepository.findByEmail(user.getEmail()) != null) {
+        // duplicate username
+        if (userRepository.findByUsername(user.getUsername()) != null) {
             return false;
         }
+        user.setEnabled(false);
+        user.setStatus(UserAccountStatus.STATUS_DISABLED.name());
         userRepository.save(user);
         return true;
     }
@@ -33,8 +40,8 @@ public class UserService {
         userRepository.delete(user);
     }
 
-    public UserAccount getByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public UserAccount getByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
 }
