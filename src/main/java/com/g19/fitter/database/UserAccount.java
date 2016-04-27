@@ -21,6 +21,8 @@ public class UserAccount {
     @Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
     private String username;
 
+    private String apiKey;
+
     private String password;
     private String firstname;
     private String lastname;
@@ -85,6 +87,15 @@ public class UserAccount {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
 
     public List<Role> getRoles() {
         return roles;

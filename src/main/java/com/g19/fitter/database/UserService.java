@@ -1,5 +1,6 @@
 package com.g19.fitter.database;
 
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -24,8 +25,9 @@ public class UserService {
         if (userRepository.findByUsername(user.getUsername()) != null) {
             return false;
         }
-        user.setEnabled(false);
-        user.setStatus(UserAccountStatus.STATUS_DISABLED.name());
+        user.setApiKey(UUID.randomUUID().toString());
+        user.setEnabled(true);
+        user.setStatus(UserAccountStatus.STATUS_APPROVED.name());
         userRepository.save(user);
         return true;
     }

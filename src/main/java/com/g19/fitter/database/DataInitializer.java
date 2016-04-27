@@ -34,7 +34,7 @@ public class DataInitializer {
 
     @PostConstruct
     public void init() {
-        String demoPasswordEncoded = encoder.encode("demo");
+        String demoPasswordEncoded = encoder.encode("abc123");
         logger.debug("initializing data, demo password encoded: {}", demoPasswordEncoded);
 
         //clear all collections, but leave indexes intact
@@ -45,11 +45,11 @@ public class DataInitializer {
         operations.insert(new Role("ROLE_ADMIN"), "role");
 
         UserAccount user = new UserAccount();
-        user.setFirstname("Bob");
-        user.setLastname("Doe");
+        user.setFirstname("Ben");
+        user.setLastname("Hernandez");
         user.setPassword(demoPasswordEncoded);
         user.addRole(userService.getRole("ROLE_USER"));
-        user.setUsername("bob");
+        user.setUsername("benaychh");
         userService.create(user);
         //simulate account activation
         user.setEnabled(true);
