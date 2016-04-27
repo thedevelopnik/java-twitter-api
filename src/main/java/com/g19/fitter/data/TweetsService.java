@@ -39,6 +39,8 @@ class TweetsService {
     @SuppressWarnings("unchecked")
     void streamApi() throws InterruptedException {
 
+        NLP.init();
+
         List<StreamListener> listeners = new ArrayList<StreamListener>();
 
         StreamListener streamListener = new StreamListener() {
@@ -59,9 +61,9 @@ class TweetsService {
                         List<MediaEntity> media = entities.getMedia();
                         String mediaType = media.get(0).getType();
                         String mediaUrl = media.get(0).getMediaSecureUrl();
-                        minTweet = new MinTweet(id, text, user, profileImg, mediaType, mediaUrl);
+                        minTweet = new MinTweet(id, text, user, profileImg, mediaType, mediaUrl, sentiment);
                     } else {
-                        minTweet = new MinTweet(id, text, user, profileImg, null, null);
+                        minTweet = new MinTweet(id, text, user, profileImg, null, null, sentiment);
                     }
                     ArrayList<String> endpoints = filterer.processTweet(tweet);
                     for (String endpoint : endpoints) {

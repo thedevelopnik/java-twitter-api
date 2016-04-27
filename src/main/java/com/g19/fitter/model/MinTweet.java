@@ -10,14 +10,16 @@ public class MinTweet {
     private String profileImageUrl;
     private String mediaType;
     private String mediaUrl;
+    private int sentiment;
 
-    public MinTweet(String id, String text, String user, String profileImageUrl, String mediaType, String mediaUrl) {
+    public MinTweet(String id, String text, String user, String profileImageUrl, String mediaType, String mediaUrl, int sentiment) {
         this.id = id;
         this.text = text;
         this.user = user;
         this.profileImageUrl = profileImageUrl;
         this.mediaType = mediaType;
         this.mediaUrl = mediaUrl;
+        this.sentiment = sentiment;
     }
 
     public String getId() {
@@ -67,5 +69,13 @@ public class MinTweet {
 
     public void setMediaUrl(String mediaUrl) {
         this.mediaUrl = mediaUrl;
+    }
+
+    public int getSentiment() {
+        return sentiment;
+    }
+
+    public void setSentiment(int sentiment) {
+        this.sentiment = sentiment;
     }
 }
