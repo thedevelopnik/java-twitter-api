@@ -39,5 +39,4 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-websocket'
     compile 'org.springframework:spring-messaging'
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
-    compile 'edu.stanford.nlp:stanford-corenlp:3.6.0'
 }

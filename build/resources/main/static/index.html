@@ -19,7 +19,8 @@
             stompClient = Stomp.over(socket);
             stompClient.connect({
                 apiKey: '5678',
-                keywords: ['Trump', 'Cruz]
+                keywords: ['Trump', 'Cruz'],
+                semantic: true
             }, function (frame) {
                 setConnected(true);
                 console.log('Connected: ' + frame);
