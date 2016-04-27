@@ -42,13 +42,13 @@ class TweetsService {
         List<StreamListener> listeners = new ArrayList<StreamListener>();
 
         StreamListener streamListener = new StreamListener() {
-            int count = 0;
+            LimitedSizeQueue<String> recentTweets = new LimitedSizeQueue<String>(100);
             public void onTweet(Tweet tweet) {
-                count++;
                 String destination = "/tweets";
                 String languageCode = tweet.getLanguageCode();
-                if (languageCode.equals(localLang)) {
-                    String id = String.valueOf(count);
+                if (languageCode.equals(localLang) && !recentTweets.contains(tweet.getIdStr())) {
+                    recentTweets.add(tweet.getIdStr());
+                    String id = tweet.getIdStr();
                     String text = tweet.getText();
                     String user = tweet.getFromUser();
                     String profileImg = tweet.getProfileImageUrl();
@@ -90,6 +90,7 @@ class TweetsService {
         }
         public void addOrReplaceFilter(String apiKey, List<String> keyWords) {
             filterMap.put(apiKey, keyWords);
+            System.out.println(filterMap);
         }
         public void removeFilter(String apiKey) {
             filterMap.remove(apiKey);
@@ -100,11 +101,37 @@ class TweetsService {
                 for (String word : filterMap.get(apiKey)) {
                     if (tweet.getText().contains(word)) {
                         temp.add(apiKey);
+                        break;
                     }
                 }
             }
             return temp;
          }
+    }
+
+    public class LimitedSizeQueue<K> extends ArrayList<K> {
+
+        private int maxSize;
+
+        public LimitedSizeQueue(int size){
+            this.maxSize = size;
+        }
+
+        public boolean add(K k){
+            boolean r = super.add(k);
+            if (size() > maxSize){
+                removeRange(0, size() - maxSize - 1);
+            }
+            return r;
+        }
+
+        public K getYongest() {
+            return get(size() - 1);
+        }
+
+        public K getOldest() {
+            return get(0);
+        }
     }
 
 }
