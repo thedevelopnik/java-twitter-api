@@ -5,3 +5,7 @@ h1 {
 p {
     text-align: center;
 }
+
+.offset {
+    margin-top: 10px;
+}
