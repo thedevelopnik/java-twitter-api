@@ -32,7 +32,7 @@ class TweetsService {
         filterer = new Filterer();
     }
 
-    public void setFilter(String apiKey, List<String> keyWords) {
+    public void setFilter(String apiKey, List<String> keyWords, Boolean semantic) {
         filterer.addOrReplaceFilter(apiKey, keyWords);
     }
 
@@ -52,6 +52,7 @@ class TweetsService {
                     String text = tweet.getText();
                     String user = tweet.getFromUser();
                     String profileImg = tweet.getProfileImageUrl();
+                    int sentiment = NLP.findSentiment(text);
                     MinTweet minTweet;
                     if (tweet.hasMedia()) {
                         Entities entities = tweet.getEntities();
