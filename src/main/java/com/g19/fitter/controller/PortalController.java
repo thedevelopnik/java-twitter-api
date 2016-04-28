@@ -3,15 +3,15 @@ package com.g19.fitter.controller;
 import com.g19.fitter.database.UserAccount;
 import com.g19.fitter.database.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 /*
  * Created by davidsudia on 4/27/16.
@@ -37,17 +37,22 @@ public class PortalController {
     public String getSignup(Model model) {
         UserAccount newUser = new UserAccount();
         model.addAttribute("user", newUser);
-        System.out.println(model);
         return "signup";
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") UserAccount userAccount) {
-        System.out.println(userAccount.getUsername());
-        System.out.println(userAccount.getFirstname());
-        System.out.println(userAccount.getLastname());
         System.out.println("signup post was called");
         userService.create(userAccount);
         return "redirect:/login?success=true";
+    }
+
+    @RequestMapping("/myaccount")
+    public String myAccount(ModelMap modelMap) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        UserAccount user = userService.getByUsername(username);
+        modelMap.addAttribute("user", user);
+        return "account";
     }
 }
