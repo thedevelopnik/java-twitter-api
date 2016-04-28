@@ -1,28 +1,26 @@
 package com.g19.fitter.data;
 
+import org.springframework.stereotype.Service;
 import com.g19.fitter.model.MinTweet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.core.MessageSendingOperations;
 import org.springframework.social.twitter.api.*;
 import org.springframework.social.twitter.api.Tweet;
-import org.springframework.stereotype.Service;
 import io.benaychh.java_fathom.Kincaid;
-
 import javax.inject.Inject;
 import java.util.*;
-
 /*
  * Created by davidsudia on 4/18/16.
  */
 @Service
-class TweetsService {
+public class TweetsService {
 
     @Inject
     private Twitter twitter;
 
     private final MessageSendingOperations messagingTemplate;
 
-    private String localLang = "en";
+    private String localLang = "e​n";
 
     private Filterer filterer;
 
@@ -54,8 +52,6 @@ class TweetsService {
                     String user = tweet.getFromUser();
                     String profileImg = tweet.getProfileImageUrl();
 
-                    // 0 = VN, 1 = N, 2 = Neut, 3 = P, 4 = VP
-//                    int sentiment = NLP.findSentiment(text);
                     float grade = Kincaid.analyze(text);
                     MinTweet minTweet;
                     if (tweet.hasMedia()) {
@@ -111,7 +107,7 @@ class TweetsService {
                 }
             }
             return temp;
-         }
+        }
     }
 
     public class LimitedSizeQueue<K> extends ArrayList<K> {
@@ -138,5 +134,4 @@ class TweetsService {
             return get(0);
         }
     }
-
 }
