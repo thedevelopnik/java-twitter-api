@@ -1,6 +1,7 @@
 package com.g19.fitter;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.security.config.annotation.web.messaging.MessageSecurityMetadataSourceRegistry;
 import org.springframework.security.config.annotation.web.socket.AbstractSecurityWebSocketMessageBrokerConfigurer;
 
@@ -13,6 +14,11 @@ import org.springframework.security.config.annotation.web.socket.AbstractSecurit
 public class WebSocketSecurityConfig extends AbstractSecurityWebSocketMessageBrokerConfigurer {
 
     public void configureInbound(MessageSecurityMetadataSourceRegistry messages) {
-        messages.anyMessage().permitAll();
+        messages
+                .nullDestMatcher().permitAll()
+                .simpTypeMatchers(SimpMessageType.CONNECT, SimpMessageType.MESSAGE, SimpMessageType.SUBSCRIBE).permitAll()
+                .simpSubscribeDestMatchers("/tweets/*").permitAll()
+                .simpDestMatchers("/tweets").permitAll()
+                .anyMessage().permitAll();
     }
 }
