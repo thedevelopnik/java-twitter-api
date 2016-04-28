@@ -16,7 +16,7 @@ public class WebSocketSecurityConfig extends AbstractSecurityWebSocketMessageBro
     public void configureInbound(MessageSecurityMetadataSourceRegistry messages) {
         messages
                 .nullDestMatcher().permitAll()
-                .simpTypeMatchers(SimpMessageType.CONNECT, SimpMessageType.MESSAGE, SimpMessageType.SUBSCRIBE).permitAll()
+                .simpTypeMatchers(SimpMessageType.CONNECT, SimpMessageType.DISCONNECT, SimpMessageType.HEARTBEAT, SimpMessageType.MESSAGE, SimpMessageType.SUBSCRIBE).permitAll()
                 .simpSubscribeDestMatchers("/tweets/*").permitAll()
                 .simpDestMatchers("/tweets").permitAll()
                 .anyMessage().permitAll();
