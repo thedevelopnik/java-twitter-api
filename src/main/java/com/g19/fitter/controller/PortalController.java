@@ -55,4 +55,9 @@ public class PortalController {
         modelMap.put("user", user);
         return "account";
     }
+
+    @RequestMapping("/docs")
+    public String docs() {
+        return "docs";
+    }
 }
