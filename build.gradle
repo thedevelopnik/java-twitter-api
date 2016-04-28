@@ -17,27 +17,12 @@ task stage {
     dependsOn build
 }
 
-dependencyManagement {
-    imports {
-        mavenBom 'com.amazonaws:aws-java-sdk-bom:1.10.47'
-    }
-}
-
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'spring-boot'
 
-
-
-dependencyManagement {
-    imports {
-        mavenBom 'io.spring.platform:platform-bom:2.0.3.RELEASE'
-    }
-}
-
 dependencies {
-    compile 'com.amazonaws:aws-java-sdk-s3'
     compile 'org.springframework:spring-core'
     compile 'org.springframework.security:spring-security-core'
     compile 'org.springframework.security:spring-security-web'
