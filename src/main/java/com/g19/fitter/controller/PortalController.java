@@ -3,8 +3,6 @@ package com.g19.fitter.controller;
 import com.g19.fitter.database.UserAccount;
 import com.g19.fitter.database.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -12,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import java.security.Principal;
 
 /*
  * Created by davidsudia on 4/27/16.
@@ -48,11 +48,11 @@ public class PortalController {
     }
 
     @RequestMapping("/myaccount")
-    public String myAccount(ModelMap modelMap) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
+    public String myAccount(ModelMap modelMap, Principal principal) {
+        String username = principal.getName();
+        System.out.println(username);
         UserAccount user = userService.getByUsername(username);
-        modelMap.addAttribute("user", user);
+        modelMap.put("user", user);
         return "account";
     }
 }

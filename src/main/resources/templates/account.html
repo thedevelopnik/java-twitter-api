@@ -35,8 +35,10 @@
     </div>
 </nav>
 <div class="col-md-6 col-offset-2">
-    <h1>Welcome to Fitter's Dev Portal</h1>
-    <p>Here you can sign up for an API key and read the docs for using the Fitter API</p>
+    <h1>Your account information</h1>
+    <p><strong>Username: </strong><span th:text="${user.getUsername()}"></span></p>
+    <p><strong>Name: </strong><span th:text="${user.getFirstname()} + ' ' + ${user.getLastname()} "></span></p>
+    <p><strong>ApiKey: </strong><span th:text="${user.getApiKey()}"></span></p>
 </div>
 
 
