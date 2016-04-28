@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationSuccessHandler authenticationSuccessHandler = new com.g19.fitter.AuthenticationSuccessHandler();
 
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/", "/login", "/signup", "/myaccount")
+        http.authorizeRequests().antMatchers("/", "/login", "/signup", "/docs")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
