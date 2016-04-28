@@ -12,7 +12,7 @@ import java.io.IOException;
 /*
  * Created by davidsudia on 4/28/16.
  */
-class AuthenticationSuccessHandler implements org.springframework.security.web.authentication.AuthenticationSuccessHandler {
+public class AuthenticationSuccessHandler implements org.springframework.security.web.authentication.AuthenticationSuccessHandler {
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
