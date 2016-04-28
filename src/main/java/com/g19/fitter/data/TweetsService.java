@@ -6,6 +6,7 @@ import org.springframework.messaging.core.MessageSendingOperations;
 import org.springframework.social.twitter.api.*;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.stereotype.Service;
+import io.benaychh.java_fathom.Kincaid;
 
 import javax.inject.Inject;
 import java.util.*;
@@ -39,12 +40,10 @@ class TweetsService {
     @SuppressWarnings("unchecked")
     void streamApi() throws InterruptedException {
 
-        NLP.init();
-
         List<StreamListener> listeners = new ArrayList<StreamListener>();
 
         StreamListener streamListener = new StreamListener() {
-            LimitedSizeQueue<String> recentTweets = new LimitedSizeQueue<String>(100);
+            LimitedSizeQueue<String> recentTweets = new LimitedSizeQueue<String>(1000);
             public void onTweet(Tweet tweet) {
                 String destination = "/tweets";
                 String languageCode = tweet.getLanguageCode();
@@ -56,16 +55,17 @@ class TweetsService {
                     String profileImg = tweet.getProfileImageUrl();
 
                     // 0 = VN, 1 = N, 2 = Neut, 3 = P, 4 = VP
-                    int sentiment = NLP.findSentiment(text);
+//                    int sentiment = NLP.findSentiment(text);
+                    float grade = Kincaid.analyze(text);
                     MinTweet minTweet;
                     if (tweet.hasMedia()) {
                         Entities entities = tweet.getEntities();
                         List<MediaEntity> media = entities.getMedia();
                         String mediaType = media.get(0).getType();
                         String mediaUrl = media.get(0).getMediaSecureUrl();
-                        minTweet = new MinTweet(id, text, user, profileImg, mediaType, mediaUrl, sentiment);
+                        minTweet = new MinTweet(id, text, user, profileImg, mediaType, mediaUrl, grade);
                     } else {
-                        minTweet = new MinTweet(id, text, user, profileImg, null, null, sentiment);
+                        minTweet = new MinTweet(id, text, user, profileImg, null, null, grade);
                     }
                     ArrayList<String> endpoints = filterer.processTweet(tweet);
                     for (String endpoint : endpoints) {

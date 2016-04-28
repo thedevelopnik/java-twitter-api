@@ -8,6 +8,8 @@
 .gradle/2.9/taskArtifacts/fileHashes.bin
 .gradle/2.9/taskArtifacts/fileSnapshots.bin
 .gradle/2.9/taskArtifacts/taskArtifacts.bin
-lib/
 build/
 gradlew.bat
+lib/ejml-0.23.jar
+lib/stanford-corenlp-3.6.0.jar
+lib/stanford-corenlp-3.6.0-models.jar

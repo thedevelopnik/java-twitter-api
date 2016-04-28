@@ -19,6 +19,7 @@ class StompConnectEvent implements ApplicationListener<SessionConnectEvent> {
     private TweetsService tweetsService;
 
     public void onApplicationEvent(SessionConnectEvent event) {
+        System.out.println(event);
         Message message = event.getMessage();
         StompHeaderAccessor headers = StompHeaderAccessor.wrap(message);
         List<String> apiKey = headers.getNativeHeader("apiKey");
