@@ -14,7 +14,7 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-    public Role getRole(String role) {
+    Role getRole(String role) {
         return roleRepository.findOne(role);
     }
 
@@ -33,7 +33,7 @@ public class UserService {
         return true;
     }
 
-    public void save(UserAccount user) {
+    void save(UserAccount user) {
         Assert.notNull(user.getId());
         userRepository.save(user);
     }
