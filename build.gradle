@@ -2,15 +2,24 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
-
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'io.spring.gradle:dependency-management-plugin:0.5.3.RELEASE'
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.3.3.RELEASE'
+    }
+}
+
+task stage {
+    dependsOn build
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'com.amazonaws:aws-java-sdk-bom:1.10.47'
     }
 }
 
@@ -19,9 +28,7 @@ apply plugin: 'idea'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'spring-boot'
 
-repositories {
-    mavenCentral()
-}
+
 
 dependencyManagement {
     imports {
@@ -30,6 +37,7 @@ dependencyManagement {
 }
 
 dependencies {
+    compile 'com.amazonaws:aws-java-sdk-s3'
     compile 'org.springframework:spring-core'
     compile 'org.springframework.security:spring-security-core'
     compile 'org.springframework.security:spring-security-web'
