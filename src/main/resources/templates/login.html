@@ -23,7 +23,10 @@
             <ul class="nav navbar-nav">
                 <li><a th:href="@{/login}">Login</a></li>
                 <li><a th:href="@{/signup}">Sign Up</a></li>
-                <li><a href="#">Logout</a></li>
+                <li>
+                    <form class="form-inline" th:action="@{/logout}" method="post"><input
+                            class="btn btn-sm btn-warning offset" type="submit" value="Logout"/></form>
+                </li>
                 <li><a href="#">Docs</a></li>
             </ul>
         </div>
@@ -37,14 +40,17 @@
     <div th:if="${param.logout}">
         You have been logged out.
     </div>
-    <form class="form-signin" th:action="@{/login}" method="post">
+    <div th:if="${param.success}">
+        You are registered! Please login.
+    </div>
+    <form class="form-signin" th:action="@{/j_spring_security_check}" method="post">
         <h2 class="form-signin-heading">Login</h2>
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" id="inputUsername" class="form-control" name="username" placeholder="username"
+        <label for="j_username" class="sr-only">Username</label>
+        <input type="text" id="j_username" class="form-control" name="j_username" placeholder="username"
                required="true"
                autofocus="true"/>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="password123"
+        <label for="j_password" class="sr-only">Password</label>
+        <input type="password" id="j_password" class="form-control" name="j_password" placeholder="password123"
                required="true"/>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
     </form>

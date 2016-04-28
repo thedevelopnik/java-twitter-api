@@ -28,6 +28,7 @@ public class UserService {
         user.setApiKey(UUID.randomUUID().toString());
         user.setEnabled(true);
         user.setStatus(UserAccountStatus.STATUS_APPROVED.name());
+        user.addRole(getRole("ROLE_USER"));
         userRepository.save(user);
         return true;
     }
