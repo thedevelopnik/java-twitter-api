@@ -37,13 +37,15 @@
     <div th:if="${param.logout}">
         You have been logged out.
     </div>
-    <form class="form-signin">
+    <form class="form-signin" th:action="@{/login}" method="post">
         <h2 class="form-signin-heading">Login</h2>
-        <label for="inputEmail" class="sr-only">Email Address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="jane@gmail.com" required="true"
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id="inputUsername" class="form-control" name="username" placeholder="username"
+               required="true"
                autofocus="true"/>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="password123" required="true"/>
+        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="password123"
+               required="true"/>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
     </form>
 </div>

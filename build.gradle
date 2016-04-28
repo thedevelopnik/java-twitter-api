@@ -48,4 +48,5 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile fileTree(dir: 'lib', include: '*.jar')
     compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'org.springframework.security:spring-security-crypto:4.0.4.RELEASE'
 }
