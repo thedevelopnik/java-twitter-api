@@ -63,6 +63,7 @@ public class TweetsService {
                     } else {
                         minTweet = new MinTweet(id, text, user, profileImg, null, null, grade);
                     }
+                    System.out.println(minTweet);
                     ArrayList<String> endpoints = filterer.processTweet(tweet);
                     for (String endpoint : endpoints) {
                         messagingTemplate.convertAndSend(destination + "/" + endpoint, minTweet);
@@ -126,7 +127,7 @@ public class TweetsService {
             return r;
         }
 
-        public K getYongest() {
+        public K getYoungest() {
             return get(size() - 1);
         }
 
